@@ -1,0 +1,159 @@
+import java.util.Scanner;
+
+public class eng_xox {
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("-----Welcome to the XOX Game!-----");
+        System.out.println("Two players will take turns entering which empty cell they want to fill.");
+        System.out.println("The player should enter the row first and then the column of the cell they want to fill (with a space between them).");
+        System.out.println("1-Start");
+        System.out.println("2-Exit");
+        int start = input.nextInt();
+
+        while(start == 1) {
+            System.out.println("Game started!");
+
+            char[][] gameTable = {
+                {' ', ' ', ' '},
+                {' ', ' ', ' '},
+                {' ', ' ', ' '}
+            };
+
+            int player1Index = 0;
+            int player2Index = 0;
+
+            for (int i = 0; i < 9; i++) {
+                if (i % 2 == 0) {
+                    System.out.println("Player 1's turn!");
+                    System.out.println("Row(1-3): ");
+                    int player1Row = input.nextInt();
+                    System.out.println("Column(1-3): ");
+                    int player1Column = input.nextInt();
+                    int row1 = player1Row - 1;
+                    int column1 = player1Column - 1;
+
+                    if (gameTable[row1][column1] == ' ') {
+                        gameTable[row1][column1] = 'X';
+
+                        if (gameTable[0][0] == 'X' && gameTable[0][1] == 'X' && gameTable[0][2] == 'X') {
+                            System.out.println("Game over! Player 1 wins!");
+                            break;
+                        }
+                        else if (gameTable[1][0] == 'X' && gameTable[1][1] == 'X' && gameTable[1][2] == 'X') {
+                            System.out.println("Game over! Player 1 wins!");
+                            break;
+                        }
+                        else if (gameTable[2][0] == 'X' && gameTable[2][1] == 'X' && gameTable[2][2] == 'X') {
+                            System.out.println("Game over! Player 1 wins!");
+                            break;
+                        }
+                        else if (gameTable[0][0] == 'X' && gameTable[1][0] == 'X' && gameTable[2][0] == 'X') {
+                            System.out.println("Game over! Player 1 wins!");
+                            break;
+                        }
+                        else if (gameTable[0][1] == 'X' && gameTable[1][1] == 'X' && gameTable[2][1] == 'X') {
+                            System.out.println("Game over! Player 1 wins!");
+                            break;
+                        }
+                        else if (gameTable[0][2] == 'X' && gameTable[1][2] == 'X' && gameTable[2][2] == 'X') {
+                            System.out.println("Game over! Player 1 wins!");
+                            break;
+                        }
+                        else if (gameTable[0][0] == 'X' && gameTable[1][1] == 'X' && gameTable[2][2] == 'X') {
+                            System.out.println("Game over! Player 1 wins!");
+                            break;
+                        }
+                        else if (gameTable[0][2] == 'X' && gameTable[1][1] == 'X' && gameTable[2][0] == 'X') {
+                            System.out.println("Game over! Player 1 wins!");
+                            break;
+                        }
+
+                        System.out.println();
+                        printBoard(gameTable);
+                        System.out.println();
+                    }
+                    else if (gameTable[row1][column1] != ' ') {
+                        System.out.println("This cell is already occupied! Try again!");
+                        i--;
+                    }
+
+                }
+                else if (i % 2 == 1) {
+                    System.out.println("Player 2's turn!");
+                    System.out.println("Row(1-3): ");
+                    int player2Row = input.nextInt();
+                    System.out.println("Column(1-3): ");
+                    int player2Column = input.nextInt();
+                    int row2 = player2Row - 1;
+                    int column2 = player2Column - 1;
+
+                    if (gameTable[row2][column2] == ' ') {
+                        gameTable[row2][column2] = 'O';
+
+                        if (gameTable[0][0] == 'O' && gameTable[0][1] == 'O' && gameTable[0][2] == 'O') {
+                            System.out.println("Game over! Player 2 wins!");
+                            break;
+                        }
+                        else if (gameTable[1][0] == 'O' && gameTable[1][1] == 'O' && gameTable[1][2] == 'O') {
+                            System.out.println("Game over! Player 2 wins!");
+                            break;
+                        }
+                        else if (gameTable[2][0] == 'O' && gameTable[2][1] == 'O' && gameTable[2][2] == 'O') {
+                            System.out.println("Game over! Player 2 wins!");
+                            break;
+                        }
+                        else if (gameTable[0][0] == 'X' && gameTable[1][0] == 'X' && gameTable[2][0] == 'O') {
+                            System.out.println("Game over! Player 2 wins!");
+                            break;
+                        }
+                        else if (gameTable[0][1] == 'O' && gameTable[1][1] == 'O' && gameTable[2][1] == 'O') {
+                            System.out.println("Game over! Player 2 wins!");
+                            break;
+                        }
+                        else if (gameTable[0][2] == 'O' && gameTable[1][2] == 'O' && gameTable[2][2] == 'O') {
+                            System.out.println("Game over! Player 2 wins!");
+                            break;
+                        }
+                        else if (gameTable[0][0] == 'O' && gameTable[1][1] == 'O' && gameTable[2][2] == 'O') {
+                            System.out.println("Game over! Player 2 wins!");
+                            break;
+                        }
+                        else if (gameTable[0][2] == 'O' && gameTable[1][1] == 'O' && gameTable[2][0] == 'O') {
+                            System.out.println("Game over! Player 2 wins!");
+                            break;
+                        }
+
+                        System.out.println();
+                        printBoard(gameTable);
+                        System.out.println();
+                    }
+                    else if (gameTable[row2][column2] != ' ') {
+                        System.out.println("This cell is already occupied! Try again!");
+                        i--;
+                    }
+                }
+            }
+
+            System.out.println();
+            System.out.println("1-Play Again");
+            System.out.println("2-Exit");
+            start = input.nextInt();
+
+        }
+
+    }
+
+    public static void printBoard(char[][] gameTable) {
+
+        for (int r = 0; r < 3; r++) {
+            for (int c = 0; c < 3; c++) {
+                System.out.print(gameTable[r][c]);
+                if (c < 2) System.out.print(" | ");
+            }
+            System.out.println();
+            if (r < 2) System.out.println("---------");
+        }
+    } 
+}

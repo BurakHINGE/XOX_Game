@@ -5,14 +5,14 @@
 ---
 
 ## 📌 Sürüm Bilgisi | Version Info  
- ● Current Version: 1.0.0  
- ● Geçerli Sürüm: 1.0.0  
+ ● Current Version: 1.1.0  
+ ● Geçerli Sürüm: 1.1.0  
 
 ---
 
 | Language / Dil | Status / Durum |
 |---------------|----------------|
-| English | Coming Soon |
+| English | ✅ |
 | Türkçe | ✅ |
 
 ---
@@ -85,4 +85,5 @@ Oyun şu durumlarda sona erer:
 
 | Version | Date       | Description |
 |--------:|------------|-------------|
-| v1.0.0  | 2026-01-01 | Initial release – Basic array-based console Tic Tac Toe game implemented. / İlk sürüm – Array tabanlı temel konsol XOX oyunu geliştirildi. |
+| v1.1.0  | 2026-03-12 | English version has been created / İngilizce sürüm oluşturuldu |
+| v1.0.0  | 2026-01-01 | Initial release – Basic array-based console Tic Tac Toe game implemented / İlk sürüm – Array tabanlı temel konsol XOX oyunu geliştirildi |

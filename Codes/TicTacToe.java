@@ -21,6 +21,8 @@ public class TicTacToe {
                 {' ', ' ', ' '}
             };
 
+            printBoard(gameTable);
+
             int player1Index = 0;
             int player2Index = 0;
 
@@ -78,7 +80,6 @@ public class TicTacToe {
                         System.out.println("This cell is already occupied! Try again!");
                         i--;
                     }
-
                 }
                 else if (i % 2 == 1) {
                     System.out.println("Player 2's turn!");
@@ -140,9 +141,11 @@ public class TicTacToe {
             System.out.println("1-Play Again");
             System.out.println("2-Exit");
             start = input.nextInt();
-
+            if (start == 2) {
+                System.out.println("Çıkış yapılıyor...");
+                break;
+            }
         }
-
     }
 
     public static void printBoard(char[][] gameTable) {

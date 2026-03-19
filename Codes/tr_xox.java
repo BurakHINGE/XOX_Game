@@ -21,6 +21,8 @@ public class tr_xox {
                 {' ', ' ', ' '}
             };
 
+            printBoard(gameTable);
+
             int player1Index = 0;
             int player2Index = 0;
 
@@ -70,7 +72,6 @@ public class tr_xox {
                             break;
                         }
 
-
                         System.out.println();
                         printBoard(gameTable);
                         System.out.println();
@@ -79,7 +80,6 @@ public class tr_xox {
                         System.out.println("Bu kutucuk dolu! Tekrar dene!");
                         i--;
                     }
-
                 }
                 else if (i % 2 == 1) {
                     System.out.println("Sıra 2. oyuncuda!");
@@ -142,9 +142,11 @@ public class tr_xox {
             System.out.println("2-Çıkış");
             start = input.nextInt();
 
+            if (start == 2) {
+                System.out.println("Çıkış yapılıyor...");
+                break;
+            }
         }
-
-
     }
 
     public static void printBoard(char[][] gameTable) {

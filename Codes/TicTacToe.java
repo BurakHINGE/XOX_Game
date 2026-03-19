@@ -141,8 +141,9 @@ public class TicTacToe {
             System.out.println("1-Play Again");
             System.out.println("2-Exit");
             start = input.nextInt();
+            
             if (start == 2) {
-                System.out.println("Çıkış yapılıyor...");
+                System.out.println("Program is closing...");
                 break;
             }
         }

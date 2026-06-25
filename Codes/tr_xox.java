@@ -6,13 +6,161 @@ public class tr_xox {
         Scanner input = new Scanner(System.in);
 
         System.out.println("-----XOX Oyununa Hoş Geldiniz!-----");
-        System.out.println("2 oyuncu sıra sıra hangi boşluğu doldurmak istediğini yazıcak.");
-        System.out.println("Oyuncu arada boşluk olacak şekilde doldurmak istediği kutucuğu önce satır ardından sütun olarak girmelidir.");
-        System.out.println("1-Start");
-        System.out.println("2-Exit");
-        int start = input.nextInt();
+        System.out.println("Oyuncu doldurmak istediği kutucuğu önce satır ardından sütun olarak girmelidir.");
+        System.out.println("1-Bilgisayara Karşı\n2-Çok Oyunculu\n3-Çıkış");
+        int choice = input.nextInt();
 
-        while(start == 1) {
+        while(choice == 1) {
+            System.out.println("Zorluk seviyesi seçiniz\n1-Kolay\n2-Orta\n3-Zor");
+            int difficultyChoice = input.nextInt();
+
+            System.out.println("Oyun başladı!");
+
+            char[][] gameTable = {
+                {' ', ' ', ' '},
+                {' ', ' ', ' '},
+                {' ', ' ', ' '}
+            };
+
+            printBoard(gameTable);
+
+            int player1Index = 0;
+            int player2Index = 0;
+
+            if (difficultyChoice == 1) {
+                
+                for (int i = 0; i < 9; i++) {
+                    if (i % 2 == 0) {
+                        System.out.println("Sıra oyuncuda!");
+                        System.out.println("Satır(1-3): ");
+                        int playerRow = input.nextInt();
+                        System.out.println("Sütun(1-3)");
+                        int playerColumn = input.nextInt();
+                        int row1 = playerRow - 1;
+                        int column1 = playerColumn - 1;
+
+                        if (gameTable[row1][column1] == ' ') {
+                            gameTable[row1][column1] = 'X';
+
+                            if (gameTable[0][0] == 'X' && gameTable[0][1] == 'X' && gameTable[0][2] == 'X') {
+                                System.out.println("Oyun bitti! Oyuncu kazandı!");
+                                break;
+                            }
+                            else if (gameTable[1][0] == 'X' && gameTable[1][1] == 'X' && gameTable[1][2] == 'X') {
+                                System.out.println("Oyun bitti! Oyuncu kazandı!");
+                                break;
+                            }
+                            else if (gameTable[2][0] == 'X' && gameTable[2][1] == 'X' && gameTable[2][2] == 'X') {
+                                System.out.println("Oyun bitti! Oyuncu kazandı!");
+                                break;
+                            }
+                            else if (gameTable[0][0] == 'X' && gameTable[1][0] == 'X' && gameTable[2][0] == 'X') {
+                                System.out.println("Oyun bitti! Oyuncu kazandı!");
+                                break;
+                            }
+                            else if (gameTable[0][1] == 'X' && gameTable[1][1] == 'X' && gameTable[2][1] == 'X') {
+                                System.out.println("Oyun bitti! Oyuncu kazandı!");
+                                break;
+                            }
+                            else if (gameTable[0][2] == 'X' && gameTable[1][2] == 'X' && gameTable[2][2] == 'X') {
+                                System.out.println("Oyun bitti! Oyuncu kazandı!");
+                                break;
+                            }
+                            else if (gameTable[0][0] == 'X' && gameTable[1][1] == 'X' && gameTable[2][2] == 'X') {
+                                System.out.println("Oyun bitti! Oyuncu kazandı!");
+                                break;
+                            }
+                            else if (gameTable[0][2] == 'X' && gameTable[1][1] == 'X' && gameTable[2][0] == 'X') {
+                                System.out.println("Oyun bitti! Oyuncu kazandı!");
+                                break;
+                            }
+                            System.out.println();
+                            printBoard(gameTable);
+                            System.out.println();
+                        }
+                        else if (gameTable[row1][column1] != ' ') {
+                            System.out.println("Bu kutucuk dolu! Tekrar dene!");
+                            i--;
+                        }
+                    }
+                    else if (i % 2 == 1) {
+                        System.out.println("Sıra bilgisayarda!");
+    
+    
+                            if (gameTable[0][0] == 'O' && gameTable[0][1] == 'O' && gameTable[0][2] == 'O') {
+                                System.out.println("Oyun bitti! Bilgisayar kazandı!");
+                                break;
+                            }
+                            else if (gameTable[1][0] == 'O' && gameTable[1][1] == 'O' && gameTable[1][2] == 'O') {
+                                System.out.println("Oyun bitti! Bilgisayar kazandı!");
+                                break;
+                            }
+                            else if (gameTable[2][0] == 'O' && gameTable[2][1] == 'O' && gameTable[2][2] == 'O') {
+                                System.out.println("Oyun bitti! Bilgisayar kazandı!");
+                                break;
+                            }
+                            else if (gameTable[0][0] == 'X' && gameTable[1][0] == 'X' && gameTable[2][0] == 'O') {
+                                System.out.println("Oyun bitti! Bilgisayar kazandı!");
+                                break;
+                            }
+                            else if (gameTable[0][1] == 'O' && gameTable[1][1] == 'O' && gameTable[2][1] == 'O') {
+                                System.out.println("Oyun bitti! Bilgisayar kazandı!");
+                                break;
+                            }
+                            else if (gameTable[0][2] == 'O' && gameTable[1][2] == 'O' && gameTable[2][2] == 'O') {
+                                System.out.println("Oyun bitti! Bilgisayar kazandı!");
+                                break;
+                            }
+                            else if (gameTable[0][0] == 'O' && gameTable[1][1] == 'O' && gameTable[2][2] == 'O') {
+                                System.out.println("Oyun bitti! Bilgisayar kazandı!");
+                                break;
+                            }
+                            else if (gameTable[0][2] == 'O' && gameTable[1][1] == 'O' && gameTable[2][0] == 'O') {
+                                System.out.println("Oyun bitti! Bilgisayar kazandı!");
+                                break;
+                            }
+    
+                            System.out.println();
+                            printBoard(gameTable);
+                            System.out.println();
+                        }
+                    }
+            }
+            else if (difficultyChoice == 2) {
+
+                for (int i = 0; i < 9; i++) {
+                    System.out.println("Sıra oyuncuda!");
+                    System.out.println("Satır(1-3): ");
+                    int playerRow = input.nextInt();
+                    System.out.println("Sütun(1-3)");
+                    int playerColumn = input.nextInt();
+                    int row1 = playerRow - 1;
+                    int column1 = playerColumn - 1;
+
+                    if (gameTable[row1][column1] == ' ') {
+                        
+                    }
+                }
+            }
+            else if (difficultyChoice == 3) {
+
+                for (int i = 0; i < 9; i++) {
+                    System.out.println("Sıra oyuncuda!");
+                    System.out.println("Satır(1-3): ");
+                    int playerRow = input.nextInt();
+                    System.out.println("Sütun(1-3)");
+                    int playerColumn = input.nextInt();
+                    int row1 = playerRow - 1;
+                    int column1 = playerColumn - 1;
+
+                    if (gameTable[row1][column1] == ' ') {
+                        
+                    }
+                }
+            }
+        }
+
+        while(choice == 2) {
             System.out.println("Oyun başladı!");
 
             char[][] gameTable = {
@@ -140,9 +288,9 @@ public class tr_xox {
             System.out.println();
             System.out.println("1-Tekrar Oyna");
             System.out.println("2-Çıkış");
-            start = input.nextInt();
+            choice = input.nextInt();
 
-            if (start == 2) {
+            if (choice == 3) {
                 System.out.println("Çıkış yapılıyor...");
                 break;
             }

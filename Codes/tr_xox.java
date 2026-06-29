@@ -75,6 +75,9 @@ public class tr_xox {
                                     System.out.println("Oyun bitti! Oyuncu kazandı!");
                                     break;
                                 }
+                                else if (i == 9) {
+                                    System.out.println("Berabere!");
+                                }
                                 System.out.println();
                                 printBoard(gameTable);
                                 System.out.println();
@@ -134,6 +137,9 @@ public class tr_xox {
                                 System.out.println("Oyun bitti! Bilgisayar kazandı!");
                                 break;
                             }
+                            else if (i == 9) {
+                                System.out.println("Berabere!");
+                            }
         
                             System.out.println();
                             printBoard(gameTable);
@@ -188,6 +194,10 @@ public class tr_xox {
                                     System.out.println("Oyun bitti! Oyuncu kazandı!");
                                     break;
                                 }
+                                else if (i == 9) {
+                                    System.out.println("Berabere!");
+                                }
+
                                 System.out.println();
                                 printBoard(gameTable);
                                 System.out.println();
@@ -197,9 +207,13 @@ public class tr_xox {
                                 i--;
                             }
                         }
+
                         else if (i % 2 == 1) {
 
-                            if (winingMoveExist(gameTable, 'O','O')) {
+                            System.out.println("Sıra bilgisayarda!");
+                            boolean botMoved = false;
+
+                            if (winingMoveExist(gameTable, 'O', 'O')) {
                                 System.out.println();
                                 printBoard(gameTable);
                                 System.out.println();
@@ -207,11 +221,27 @@ public class tr_xox {
                                 break;
                             }
                             else if (winingMoveExist(gameTable, 'X', 'O')) {
-                                System.out.println();
-                                printBoard(gameTable);
-                                System.out.println();
-                                continue;
+                                botMoved = true;
                             }
+
+                            if (!botMoved) {
+                                int botRow = (int)(Math.random() * 3);
+                                int botColumn = (int)(Math.random() * 3);
+                                
+                                while (true) {
+                                    if (gameTable[botRow][botColumn] == 'O' || gameTable[botRow][botColumn] == 'X') {
+                                        botRow = (int)(Math.random() * 3);
+                                        botColumn = (int)(Math.random() * 3);
+                                        continue;
+                                    } else {
+                                        gameTable[botRow][botColumn] = 'O';
+                                        break;
+                                    }
+                                }
+                            }
+                            System.out.println();
+                            printBoard(gameTable);
+                            System.out.println();
                         }
                     }  
                 }
@@ -366,7 +396,7 @@ public class tr_xox {
                             else if (i == 9) {
                                 System.out.println("Berabere!");
                             }
-                            
+
                             System.out.println();
                             printBoard(gameTable);
                             System.out.println();
@@ -437,8 +467,8 @@ public class tr_xox {
             gameTable[1][0] = opponent;
             return true;
         }
-        else if (gameTable[2][0] == symbol && gameTable[2][1] == symbol && gameTable[1][2] == ' ') {
-            gameTable[1][2] = opponent;
+        else if (gameTable[2][0] == symbol && gameTable[2][1] == symbol && gameTable[2][2] == ' ') {
+            gameTable[2][2] = opponent;
             return true;
         }
         else if (gameTable[2][0] == symbol && gameTable[2][2] == symbol && gameTable[2][1] == ' ') {

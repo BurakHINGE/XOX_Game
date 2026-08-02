@@ -248,16 +248,105 @@ public class tr_xox {
                 else if (difficultyChoice == 3) {
 
                     for (int i = 0; i < 9; i++) {
-                        System.out.println("Sıra oyuncuda!");
-                        System.out.println("Satır(1-3): ");
-                        int playerRow = input.nextInt();
-                        System.out.println("Sütun(1-3)");
-                        int playerColumn = input.nextInt();
-                        int row1 = playerRow - 1;
-                        int column1 = playerColumn - 1;
+                        if (i % 2 == 0) {
+                            System.out.println("Sıra oyuncuda!");
+                            System.out.println("Satır(1-3): ");
+                            int playerRow = input.nextInt();
+                            System.out.println("Sütun(1-3)");
+                            int playerColumn = input.nextInt();
+                            int row1 = playerRow - 1;
+                            int column1 = playerColumn - 1;
 
-                        if (gameTable[row1][column1] == ' ') {
-                            
+                            if (gameTable[row1][column1] == ' ') {
+                                gameTable[row1][column1] = 'X';
+
+                                if (gameTable[0][0] == 'X' && gameTable[0][1] == 'X' && gameTable[0][2] == 'X') {
+                                    System.out.println("Oyun bitti! Oyuncu kazandı!");
+                                    break;
+                                }
+                                else if (gameTable[1][0] == 'X' && gameTable[1][1] == 'X' && gameTable[1][2] == 'X') {
+                                    System.out.println("Oyun bitti! Oyuncu kazandı!");
+                                    break;
+                                }
+                                else if (gameTable[2][0] == 'X' && gameTable[2][1] == 'X' && gameTable[2][2] == 'X') {
+                                    System.out.println("Oyun bitti! Oyuncu kazandı!");
+                                    break;
+                                }
+                                else if (gameTable[0][0] == 'X' && gameTable[1][0] == 'X' && gameTable[2][0] == 'X') {
+                                    System.out.println("Oyun bitti! Oyuncu kazandı!");
+                                    break;
+                                }
+                                else if (gameTable[0][1] == 'X' && gameTable[1][1] == 'X' && gameTable[2][1] == 'X') {
+                                    System.out.println("Oyun bitti! Oyuncu kazandı!");
+                                    break;
+                                }
+                                else if (gameTable[0][2] == 'X' && gameTable[1][2] == 'X' && gameTable[2][2] == 'X') {
+                                    System.out.println("Oyun bitti! Oyuncu kazandı!");
+                                    break;
+                                }
+                                else if (gameTable[0][0] == 'X' && gameTable[1][1] == 'X' && gameTable[2][2] == 'X') {
+                                    System.out.println("Oyun bitti! Oyuncu kazandı!");
+                                    break;
+                                }
+                                else if (gameTable[0][2] == 'X' && gameTable[1][1] == 'X' && gameTable[2][0] == 'X') {
+                                    System.out.println("Oyun bitti! Oyuncu kazandı!");
+                                    break;
+                                }
+                                else if (i == 9) {
+                                    System.out.println("Berabere!");
+                                }
+
+                                System.out.println();
+                                printBoard(gameTable);
+                                System.out.println();
+                            }
+                            else if (gameTable[row1][column1] != ' ') {
+                                System.out.println("Bu kutucuk dolu! Tekrar dene!");
+                                i--;
+                            }
+                        }
+
+                        else if (i % 2 == 1) {
+
+                            System.out.println("Sıra bilgisayarda!");
+                            boolean botMoved = false;
+
+                            if (winingMoveExist(gameTable, 'O', 'O')) {
+                                System.out.println();
+                                printBoard(gameTable);
+                                System.out.println();
+                                System.out.println("Oyun bitti! Bilgisayar kazandı!");
+                                break;
+                            }
+                            else if (winingMoveExist(gameTable, 'X', 'O')) {
+                                botMoved = true;
+                                continue;
+                            }
+                            else if (takeCenter(gameTable)) {
+                                continue;
+                            }
+                            else if (takeCorner(gameTable)) {
+                                continue;
+                            }
+
+                            if (!botMoved) {
+                                int botRow = (int)(Math.random() * 3);
+                                int botColumn = (int)(Math.random() * 3);
+                                
+                                while (true) {
+                                    if (gameTable[botRow][botColumn] == 'O' || gameTable[botRow][botColumn] == 'X') {
+                                        botRow = (int)(Math.random() * 3);
+                                        botColumn = (int)(Math.random() * 3);
+                                        continue;
+                                    } else {
+                                        gameTable[botRow][botColumn] = 'O';
+                                        break;
+                                    }
+                                }
+                            }
+                            System.out.println();
+                            printBoard(gameTable);
+                            System.out.println();
                         }
                     }
                 }
@@ -538,6 +627,42 @@ public class tr_xox {
         else if (gameTable[1][2] == symbol && gameTable[2][2] == symbol && gameTable[0][2] == ' ') {
             gameTable[0][2] = opponent;
             return true;
+        }
+        return false;
+    }
+
+    public static boolean takeCenter(char[][] gameTable) {
+        if (gameTable[1][1] == ' ') {
+            gameTable[1][1] = 'O';
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean takeCorner(char[][] gameTable) {
+
+        if (gameTable[0][0] == ' ' || gameTable[2][0] == ' ' || gameTable[0][2] == ' ' || gameTable[2][2] == ' ') {
+            
+            while (true) {
+                int which = (int)(Math.random() * 4);
+
+                if (gameTable[0][0] == ' ' && which == 0) {
+                    gameTable[0][0] = 'O';
+                    return true;
+                }
+                else if (gameTable[2][0] == ' ' && which == 1) {
+                    gameTable[2][0] = 'O';
+                    return true;
+                }
+                else if (gameTable[0][2] == ' ' && which == 2) {
+                    gameTable[0][2] = 'O';
+                    return true;
+                }
+                else if (gameTable[2][2] == ' ' && which == 3) {
+                    gameTable[2][2] = 'O';
+                    return true;
+                }
+            }
         }
         return false;
     }
